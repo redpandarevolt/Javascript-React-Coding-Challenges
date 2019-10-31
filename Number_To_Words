@@ -1,0 +1,57 @@
+// Write a function that takes a number up to 999,999,999.99 and returns the
+// amount in words. This function will be used to automatically write a check after
+// the amount in number is entered.
+
+
+//import package without dpenedencies file by
+//"require"-ing it.
+var numberToWords = require('number-to-words');
+
+
+// Sample Numbers
+var digits1 = 999999.79;
+var digits2 = 167.34;
+var digits3 = 16.01;
+
+
+//considered removing comma from numbers first, syntax is off
+//var removeCommas = digits.split(',').join('');
+
+
+//Function to change number to wording for check
+function wordNumbers(digits)
+{
+  while(digits <= 999,999,999.99)
+  {
+
+    //remove commas from incoming number, work out later
+    //var removeCommas = digits.split(',').join('');
+
+
+    //Use absolute number
+    n = Math.abs(digits);
+
+
+    //Isolate two numbers after decimal
+    var decimal = n - Math.floor(n);
+    var cents = decimal.toFixed(2);
+    var numerator = cents.slice(2, 4);
+
+
+    //Format the cents as a fraction
+    var fraction = ' and ' + numerator + '/100';
+
+    
+    //Change Number to right of decimal to words
+    var inWords = numberToWords.toWords(digits);
+
+    return inWords + fraction;
+  }
+  console.log('Number is to large.');
+}
+
+wordNumbers(digits1);
+//wordNumbers(digits2);
+//wordNumbers(digits3);
+//numberToWords.toOrdinal(1);
+//numberToWords.toWordsOrdinal(1);

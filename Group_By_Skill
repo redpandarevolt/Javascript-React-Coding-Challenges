@@ -1,0 +1,39 @@
+// Marcela Gomez 10/29/2019 CascadiaJS AWS Coding challenge
+
+// Given an array of objects that define a person’s name and their skills,
+// write a javascript function that takes the given array and returns and object
+// that maps each skill to an array of people that has that skill.
+
+
+var student = [{
+    id: 0,
+    name: "John",
+    skills: ["javascript", "html", "css", "c#"]
+  },
+  {
+    id: 1,
+    name: "Brian",
+    skills: ["javascript", "java", "c", "c#", "c++", "html"]
+  },
+  {
+    id: 2,
+    name: "Michael",
+    skills: ["c", "c++", "go", "rust"]
+  }
+];
+
+function skills(student)
+{
+      return student.reduce(function(map, {name,skills}) {
+        skills.forEach((skill) => {
+          if(!map[skill]) {
+            map[skill] = [];
+          }
+          map[skill].push(name);
+        });
+
+        return map;
+      }, {});
+}
+
+skills(student);
